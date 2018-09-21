@@ -1,0 +1,36 @@
+#include <msp430.h> 
+
+
+/**
+ * main.c
+ */
+int main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+    P1SEL &= ~BIT0;     // selects P1.0 to be a GPIO
+    P1SEL &= ~BIT6;     // selects P1.6 to be a GPIO
+    P1DIR |= BIT0;      // makes BIT0 output
+    P1DIR |= BIT6;      // makes BIT6 output
+    P1OUT &= ~BIT0;     // starts the LED off
+    P1OUT &= ~BIT6;     // starts the LED off
+
+
+    while(1)
+    {
+        volatile unsigned int i, k;
+        i++;
+        k++;
+        if(i>7000)       // is the speed at which the LED blinks
+        {
+            i=0;
+            P1OUT ^= BIT0;  // toggles the LED
+        }
+        if(k>19000)      // is the speed at which the LED blinks
+        {
+            k=0;
+            P1OUT ^= BIT6;  // toggles the LED
+        }
+    }
+
+    return 0;
+}
