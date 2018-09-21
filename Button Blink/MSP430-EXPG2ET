@@ -1,0 +1,24 @@
+#include <msp430.h> 
+
+
+/**
+ * main.c
+ * Button Blink
+ */
+int main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+    P1DIR |= BIT0;              // makes P1.0 an output
+    P1REN |= BIT3;              // sets the output of the button to be 0 and in order to change it 1 you must press button (Pull up)
+    P1OUT |= BIT3;              // makes P1.3 output = 1
+
+        while(1)
+        {
+            __delay_cycles(600000);     // sets delay of the LED
+            if ((P1IN & BIT3) == 0x00)  // turns on/off the LED with button
+            {
+                 P1OUT ^= BIT0;         // XOR Statement to change the BIT from 1 to 0
+            }
+        }
+        return 0;
+}
