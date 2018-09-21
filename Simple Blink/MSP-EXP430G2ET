@@ -13,8 +13,8 @@ int main(void)
 
 	    while(1)
 	    {
-	        P1OUT ^= BIT0;          //AN XOR Statement to change the BIT from 1 to 0
-	        _delay_cycles(100000);
+	        P1OUT ^= BIT0;          // XOR Statement to change the BIT from 1 to 0
+	        _delay_cycles(100000);	// controls the rate LED toggles .1 seconds
 	    }
 	return 0;
 }
