@@ -1,0 +1,35 @@
+#include <msp430.h> 
+
+
+/**
+ * main.c
+ * Multiple Blink
+ */
+int main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+    P1SEL &= ~BIT0;             // enables P1.0 to be a GPIO
+    P4SEL &= ~BIT7;             // enables P4.7 to be a GPIO
+    P1DIR |= BIT0;              // sets P1.0 to be an output
+    P4DIR |= BIT7;              // sets P4.7 to be an input
+    P1OUT &= ~BIT0;             // sets the LED off
+    P4OUT &= ~BIT7;             // sets the LED off
+
+    while(1)
+    {
+        volatile unsigned int i, k;
+        i++;
+        k++;
+        if(i>7000)              // is the speed at which the LED blinks
+        {
+            i=0;
+            P1OUT ^= BIT0;      // toggles the LED
+        }
+        if(k>19000)             // is the speed at which the LED blinks
+        {
+            k=0;
+            P4OUT ^= BIT7;      // toggles the LED
+        }
+    }
+    return 0;
+}
