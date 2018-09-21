@@ -3,7 +3,7 @@
 
 /**
  * main.c
- * Simple Blink 5529
+ * Simple Blink G2
  */
 int main(void)
 {
@@ -13,8 +13,8 @@ int main(void)
 
 	    while(1)
 	    {
-	        P1OUT ^= BIT0;          // XOR Statement to change the BIT from 1 to 0
-	        _delay_cycles(100000);  // controls the rate LED toggles
+	        P1OUT ^= BIT0;          //AN XOR Statement to change the BIT from 1 to 0
+	        _delay_cycles(100000);
 	    }
-     return 0;
+	return 0;
 }
